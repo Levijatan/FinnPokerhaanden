@@ -1,14 +1,47 @@
-const http = require("http");
+'use strict';
 
-const hostname = process.env.HOSTNAME || "localhost";
-const port = process.env.PORT || 8080;
+const express = require('express');
 
-const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader("Content-Type", 'text/plain');
-    res.end("Hello World!");
+const generate = require("./generate");
+const analyze = require("./analyze");
+
+const HOST = '0.0.0.0';
+const PORT = process.env.PORT || 8080;
+
+const router = express.Router();
+const app = express();
+app.use("/", router);
+
+router.get("/", (req, res) => {
+    res.send("Hello, World!");
 });
 
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
+//Gen poker hand endpoint
+router.get("/gen", (req, res) => {
+    const hand = generate.genHand(5);
+    const handString = "";
+    for (let i = 0; i < hand.length; i++) {
+        handString += generate.cardToString(hand[i]);
+    }
+    const handAnalyze = analyze.genAnalyze(handString);
+    const obj = {};
+    obj.hand = handString;
+    obj.analysis = handAnalyze;
+    res.send(obj);
+});
+
+router.post("/analyze", (req, res) => {
+    hand = req.body.hand;
+    if (hand.length != 10) {
+        res.sendStatus(400);
+    } else {
+        const obj = {};
+        obj.hand = hand;
+        obj.analysis = analyze.genAnalyze(hand);
+        res.send(obj);
+    }
+});
+
+app.listen(PORT, HOST, () => {
+    console.log(`Running on http://${HOST}:${PORT}`);
 });

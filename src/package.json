@@ -5,7 +5,13 @@
     "author": "Åsmund Rosendahl <aasmundaasmund6@gmail.com>",
     "main": "server.js",
     "scripts": {
-        "start": "node server.js"
+        "start": "node server.js",
+        "test": "jest"
     },
-    "dependencies": {}
+    "dependencies": {
+        "express": "^4.16.1"
+    },
+    "devDependencies": {
+        "jest": "^29.2.1"
+    }
 }
