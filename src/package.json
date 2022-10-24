@@ -1,0 +1,11 @@
+{
+    "name": "finn_pokerhaand",
+    "version": "1.0.0",
+    "description": "Web app that generates and analyzes poker hands",
+    "author": "Åsmund Rosendahl <aasmundaasmund6@gmail.com>",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {}
+}
