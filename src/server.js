@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const path = require("path");
 
 const generate = require("./generate");
 const analyze = require("./analyze");
@@ -13,7 +14,7 @@ const app = express();
 app.use("/", router);
 
 router.get("/", (req, res) => {
-    res.send("Hello, World!");
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 //Gen poker hand endpoint

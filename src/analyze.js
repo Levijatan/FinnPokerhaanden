@@ -59,6 +59,7 @@ module.exports.findPairs = findPairs;
 
 
 // hand: input string in style of 3h5d9sthak
+// Does not do any special analysis for Full House, Straight Flush, etc.., since it it really easy to infer from the provided data.
 function analyzeHand(hand) {
     if (hand.length !== 10) {
         return;
