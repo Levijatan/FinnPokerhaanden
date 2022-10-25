@@ -9,13 +9,34 @@
             padding-top: 50px;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(() => {
+            $("#Gen").click(() => {
+                $.get(
+                    "/gen",
+                    {},
+                    (data, status) => {
+                        console.log(data);
+                    }
+                );
+            });
+
+
+        });
+    </script>
 </head>
 
 <body>
 
     <div class="container">
-        <button id="Gen" type="button">Generate Hand</button>
-        <button id="Analyze" type="button">Analyze</button>
+        <div>
+            <button id="Gen" type="button">Generate Hand</button>
+        </div>
+        <div>
+            <input type="text" id="analyzeInput" minlength="10" maxlength="10">
+            <button id="Analyze" type="button">Analyze</button>
+        </div>
     </div>
 
 </body>
